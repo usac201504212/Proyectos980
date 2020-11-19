@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tieda en Linea</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,700;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,600&display=swap" rel="stylesheet"> 
+    {% load static %}
+    {% block css %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'aplicacion/css/estilos.css' %}">
+    
+</head>
+<body>
+
+    
+    <header id="header">
+        <img class="menu" src="{% static 'aplicacion/img/Ropa' %}" alt="menu" id="menu">
+        <div class="contenedor_logo">
+            <img  class="logo"  src="{% static 'aplicacion/img/Ropa/' %}" alt="">
+        </div>
+
+        <div>
+            
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a href="{% url 'homepage' %}"> Inicio </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+                    <li><a href="{% url 'imagenes' %}">Imagenes</a></li>
+
+                    {% if user.authenticated %}
+                    <li> 
+                        <a href="{% url 'logout' %}">Cerrar Sesion</a>
+                    </li>
+                    {% else %}
+                    <li> 
+                        <a href="{% url 'login' %}">Iniciar Sesion</a>
+                    </li>
+                    <li> 
+                        <a href="{% url 'registro' %}">Registrate</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <div id="contenido">
+
+        {% block contenido %}
+        {% endblock %}
+
+    </div>
+
+
+    <footer>
+        <div class="marcas">
+            <img src="{% static 'aplicacion/img/' %}" alt="">
+            <img src="{% static 'aplicacion/img/' %}" alt="">
+            <img src="{% static 'aplicacion/img/' %}" alt="">
+            <img src="{% static 'aplicacion/img/' %}" alt="">
+            <img src="{% static 'aplicacion/img/' %}" alt="">
+        </div>
+        <div class="logo_footer">
+            <img src="{% static 'aplicacion/img/ropa/camisa1.jpg' %}" alt="logo">
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="{% static 'aplicacion/js/menu.js' %}"></script>
+
+    {% block js %}
+    {% endblock %}
+
+</body>
+</html>
